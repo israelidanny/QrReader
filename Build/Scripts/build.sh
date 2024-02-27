@@ -3,7 +3,7 @@
 # Assign command line arguments to named variables
 TargetPlatform=$1
 PluginDir=$2
-
+ 
 # Check if PluginDir is empty or null
 if [[ -z $PluginDir ]]; then
     echo "Error: PluginDir is empty or not provided"
@@ -31,7 +31,7 @@ BuildDir="$PluginDir/Intermediate/ThirdParty/ZXing/$TargetPlatform"
 BinariesDir="$PluginDir/Binaries/$TargetPlatform"
 
 # This stuff is useful to see in the build logs
-echo "Building ZXing for Win64..."
+echo "Building ZXing for $TargetPlatform..."
 echo "Source Directory: $SourceDir"
 echo "Build Directory: $BuildDir"
 echo "Binaries Directory: $BuildDir"
@@ -86,12 +86,11 @@ case $TargetPlatform in
           exit 0
         fi
 
-        echo "Building ZXing for Android..."
         echo "NDKROOT: $NDKROOT"
         echo "ANDROID_HOME: $ANDROID_HOME"
         
         # There can be multiple cmake versions in the SDK path, let's find the most recent one
-        cmake=$(find $ANDROID_HOME/cmake -name "cmake" | sort -r | head -1)
+        cmake=$(find $ANDROID_HOME/cmake -name "cmake" -type f -perm +111 | sort -r | head -1)
         binPath=$(dirname "$cmake")
         ninja="$binPath/ninja"
         echo "cmake: $cmake"
@@ -111,17 +110,17 @@ case $TargetPlatform in
             "-DANDROID_ABI=arm64-v8a"
         )
         args=("${android_args[@]}" "${args[@]}")
-
+        
         echo "$cmake ${args[@]} -DBUILD_SHARED_LIBS=OFF"
         "$cmake" "${args[@]}" -DBUILD_SHARED_LIBS=OFF
-        echo "$cmake $BuildDir -j8 --config Release"
+        echo "$cmake --build \"$BuildDir\" -j8 --config Release"
         "$cmake" --build "$BuildDir" -j8 --config Release
 
         echo "$cmake ${args[@]} -DBUILD_SHARED_LIBS=ON"
         "$cmake" "${args[@]}" -DBUILD_SHARED_LIBS=ON
-        echo "$cmake $BuildDir -j8 --config Release"
+        echo "$cmake --build \"$BuildDir\" -j8 --config Release"
         "$cmake" --build "$BuildDir" -j8 --config Release
-
+        
         ArtifactPath="$BuildDir/core/Release/libZXing.so"
         if [[ ! -f "$ArtifactPath" ]]; then
             echo "Error: File $ArtifactPath does not exist."

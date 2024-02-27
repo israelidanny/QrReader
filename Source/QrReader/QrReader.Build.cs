@@ -29,6 +29,7 @@ public class QrReader : ModuleRules
 				"UMG",
 				"DeveloperSettings",
 				"ZXingUnreal",
+				"AndroidPermission"
 				// ... add other public dependencies that you statically link with here ...
 			}
 		);
@@ -44,8 +45,7 @@ public class QrReader : ModuleRules
 				"MediaAssets",
 				"MediaUtils",
 				"RHI",
-				"RenderCore",
-				"AndroidPermission"
+				"RenderCore"
 				// ... add private dependencies that you statically link with here ...	
 			}
 		);

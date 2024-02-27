@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "MediaAssets/Public/MediaTexture.h"
+#include "MediaTexture.h"
 
 THIRD_PARTY_INCLUDES_START
 #include "ThirdParty/ZXing/zxing-cpp/core/src/ReadBarcode.h"

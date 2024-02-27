@@ -480,6 +480,7 @@ endif()
 set_target_properties(ZXing PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
 
 if (APPLE AND BUILD_APPLE_FRAMEWORK)
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE INTERNAL "" FORCE)
     set_target_properties(ZXing PROPERTIES
         FRAMEWORK TRUE
         FRAMEWORK_VERSION "C"
@@ -523,7 +524,7 @@ if (MSVC)
         COMPILE_PDB_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ZXing.pdb
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            CONFIGURATIONS Debug RelWithDebInfo 
+            CONFIGURATIONS Debug RelWithDebInfo
             OPTIONAL)
 endif()
 

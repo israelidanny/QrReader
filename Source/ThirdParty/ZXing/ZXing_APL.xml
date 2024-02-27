@@ -21,7 +21,7 @@
     <soLoadLibrary>
         <if condition="bSupported">
             <true>
-                <loadLibrary name="libZXing" failmsg="Failed to load libZXing library" />
+                <loadLibrary name="ZXing" failmsg="Failed to load libZXing library" />
             </true>
         </if>
     </soLoadLibrary>

@@ -1,50 +1,53 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0.0",
-	"FriendlyName": "QR Reader",
-	"Description": "A cross platform barcode and QR reader for Unreal",
-	"Category": "Misc",
-	"CreatedBy": "Daniel Povolotski",
-	"CreatedByURL": "https://github.com/israelidanny/unreal-qr-reader",
-	"DocsURL": "https://github.com/israelidanny/unreal-qr-reader",
-	"MarketplaceURL": "",
-	"SupportURL": "https://github.com/israelidanny/unreal-qr-reader",
-	"EngineVersion": [
-		"5.0",
-		"5.1",
-		"5.2",
-		"5.3"
-	],
-	"CanContainContent": true,
-	"Installed": true,
-	"SupportedTargetPlatforms": [
-		"Win64",
-		"Linux",
-		"Mac",
-		"IOS",
-		"Android"	
-	],
-	"Modules": [
-		{
-			"Name": "QrReader",
-			"Type": "Runtime",
-			"LoadingPhase": "Default",
-			"PlatformAllowList": [
-				"Win64",
-				"Linux",
-				"Mac",
-				"iOS",
-				"Android"
-			]
-		} 
-	],
-	"PreBuildSteps": {
-		"Win64": [
-			"powershell.exe -ExecutionPolicy Bypass -File \"$(PluginDir)\\Build\\Scripts\\build.ps1\" -TargetPlatform $(TargetPlatform) -PluginDir \"$(PluginDir)\""
-		],
-		"Mac": [
-			"zsh \"$(PluginDir)/Build/Scripts/build.sh\" $(TargetPlatform) \"$(PluginDir)\""
-		]
-	}
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "QR Reader",
+  "Description": "A cross platform barcode and QR reader for Unreal",
+  "Category": "Misc",
+  "CreatedBy": "Daniel Povolotski",
+  "CreatedByURL": "https://github.com/israelidanny/unreal-qr-reader",
+  "DocsURL": "https://github.com/israelidanny/unreal-qr-reader",
+  "MarketplaceURL": "",
+  "SupportURL": "https://github.com/israelidanny/unreal-qr-reader",
+  "EngineVersion": [
+    "5.0",
+    "5.1",
+    "5.2",
+    "5.3"
+  ],
+  "CanContainContent": true,
+  "Installed": true,
+  "SupportedTargetPlatforms": [
+    "Win64",
+    "Linux",
+    "Mac",
+    "IOS",
+    "Android"
+  ],
+  "Modules": [
+    {
+      "Name": "QrReader",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "PlatformAllowList": [
+        "Win64",
+        "Linux",
+        "Mac",
+        "iOS",
+        "Android"
+      ],
+      "AdditionalDependencies": [
+        "AndroidPermission"
+      ]
+    }
+  ],
+  "PreBuildSteps": {
+    "Win64": [
+      "powershell.exe -ExecutionPolicy Bypass -File \"$(PluginDir)\\Build\\Scripts\\build.ps1\" -TargetPlatform $(TargetPlatform) -PluginDir \"$(PluginDir)\""
+    ],
+    "Mac": [
+      "zsh \"$(PluginDir)/Build/Scripts/build.sh\" $(TargetPlatform) \"$(PluginDir)\""
+    ]
+  }
 }
